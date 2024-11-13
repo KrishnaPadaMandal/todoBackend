@@ -5,8 +5,9 @@ const cluster = require('cluster');
 const os = require('os')
 
 
-if(cluster.isMaster)
+if(cluster.isPrimary)
 {
+    console.log(`Primary ${process.pid} is running`);
     const numCpu = os.cpus().length
     console.log("numCpu",numCpu)
 
