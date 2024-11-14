@@ -4,6 +4,10 @@ const connectDB = require('./Connection')
 const cluster = require('cluster');
 const os = require('os')
 
+const PORT = 2000
+const cors = require('cors')
+
+
 
 if(cluster.isPrimary)
 {
@@ -23,11 +27,11 @@ if(cluster.isPrimary)
 }
 else {
 
-    const PORT = 2000
+    app.use(cors())
+
 app.use(express.json())
 
 const userRoute = require('./Route/UserRoute');
-const { exit } = require('process');
 
 app.use('/api',userRoute)
 
